@@ -14,3 +14,15 @@
   justify-content: center;
   margin: 10px;
 }
+.Win {
+  border: 10px solid green;
+  color: green;
+}
+.Lose {
+  border: 10px solid red;
+  color: red;
+}
+.Tie {
+  border: 10px solid black;
+  color: black;
+}

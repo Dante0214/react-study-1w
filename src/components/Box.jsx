@@ -12,7 +12,7 @@ const Box = (props) => {
     result = props.result;
   }
   return (
-    <div className="box">
+    <div className={`box ${result}`}>
       <h1>{props.name}</h1>
       <img
         className="item-img"
