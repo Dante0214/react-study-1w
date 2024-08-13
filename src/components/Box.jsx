@@ -14,11 +14,9 @@ const Box = (props) => {
   return (
     <div className={`box ${result}`}>
       <h1 className="name">{props.name}</h1>
-      <img
-        className="item-img"
-        src={props.item && props.item.img}
-        alt={props.item && props.item.name}
-      />
+      {props.item && (
+        <img className="item-img" src={props.item.img} alt={props.item.name} />
+      )}
       <h2>{result}</h2>
     </div>
   );
