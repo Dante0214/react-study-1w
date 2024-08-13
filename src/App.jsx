@@ -1,9 +1,9 @@
 import Box from "./components/Box";
-import "./App.css";
 import { useState } from "react";
 import rockImg from "./assets/images/rock.png";
 import scissorsImg from "./assets/images/scissors.png";
 import paperImg from "./assets/images/paper.png";
+import { Button, Container, Grid, Typography } from "@mui/material";
 
 // 박스 2개{타이틀,사진,결과}
 // 가위 바위 보 버튼
@@ -60,23 +60,48 @@ function App() {
     }
   };
   return (
-    <div>
-      <div className="main">
-        <Box name="You" item={userSelect} result={result} />
-        <Box name="Computer" item={computerSelect} result={result} />
-      </div>
-      <div className="main">
-        <button className="button" onClick={() => play("scissors")}>
-          가위
-        </button>
-        <button className="button" onClick={() => play("rock")}>
-          바위
-        </button>
-        <button className="button" onClick={() => play("paper")}>
-          보
-        </button>
-      </div>
-    </div>
+    <Container maxWidth="md">
+      <Typography variant="h4" align="center" gutterBottom padding={"20px 0px"}>
+        가위 바위 보 게임
+      </Typography>
+      <Grid container spacing={2} mb={4} justifyContent="center">
+        <Grid item xs={12} sm={6}>
+          <Box name="You" item={userSelect} result={result} />
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <Box name="Computer" item={computerSelect} result={result} />
+        </Grid>
+      </Grid>
+      <Grid container spacing={2} justifyContent="center">
+        <Grid item>
+          <Button
+            sx={{ fontSize: "30px", color: "#000" }}
+            size="medium"
+            onClick={() => play("scissors")}
+          >
+            가위
+          </Button>
+        </Grid>
+        <Grid item>
+          <Button
+            sx={{ fontSize: "30px", color: "#000" }}
+            size="medium"
+            onClick={() => play("rock")}
+          >
+            바위
+          </Button>
+        </Grid>
+        <Grid item>
+          <Button
+            sx={{ fontSize: "30px", color: "#000" }}
+            size="medium"
+            onClick={() => play("paper")}
+          >
+            보
+          </Button>
+        </Grid>
+      </Grid>
+    </Container>
   );
 }
 
