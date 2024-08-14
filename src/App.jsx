@@ -42,7 +42,7 @@ function App() {
     setResult(judgement(choice[userChoice], computerChoice));
   };
   const randomChoice = () => {
-    const itemArray = Object.keys(choice);
+    const itemArray = Object.keys(choice).filter((key) => key !== "init"); //기본 이미지 제외
     const randomItem = Math.floor(Math.random() * itemArray.length);
     const final = itemArray[randomItem];
     return choice[final];
