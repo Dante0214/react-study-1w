@@ -3,6 +3,7 @@ import { useState } from "react";
 import rockImg from "./assets/images/rock.png";
 import scissorsImg from "./assets/images/scissors.png";
 import paperImg from "./assets/images/paper.png";
+import initImg from "./assets/images/init.png";
 import { Button, Container, Grid, Typography } from "@mui/material";
 
 // 박스 2개{타이틀,사진,결과}
@@ -12,6 +13,10 @@ import { Button, Container, Grid, Typography } from "@mui/material";
 // 결과를 가지고 누가 이겼는지 승패을 따짐
 // 결과에 따라 테두리 색이 바뀜
 const choice = {
+  init: {
+    name: "init",
+    img: initImg,
+  },
   rock: {
     name: "Rock",
     img: rockImg,
@@ -26,8 +31,8 @@ const choice = {
   },
 };
 function App() {
-  const [userSelect, setUserSelect] = useState(null);
-  const [computerSelect, setComputerSelect] = useState(null);
+  const [userSelect, setUserSelect] = useState(choice.init);
+  const [computerSelect, setComputerSelect] = useState(choice.init);
   const [result, setResult] = useState("");
   const play = (userChoice) => {
     const computerChoice = randomChoice();

@@ -1,17 +1,14 @@
 import { Paper, Typography } from "@mui/material";
 import React from "react";
 
-const Box = (props) => {
-  let result;
-  if (
-    props.name === "Computer" &&
-    props.result !== "Tie" &&
-    props.result !== ""
-  ) {
-    result = props.result === "Win" ? "Lose" : "Win";
-  } else {
-    result = props.result;
+const getResult = (name, result) => {
+  if (name === "Computer" && result !== "Tie" && result !== "") {
+    return result === "Win" ? "Lose" : "Win";
   }
+  return result;
+};
+const Box = (props) => {
+  const result = getResult(props.name, props.result);
   return (
     <Paper
       elevation={3}
