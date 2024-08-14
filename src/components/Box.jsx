@@ -30,6 +30,7 @@ const Box = (props) => {
       )}
       <Typography variant="h4">{result}</Typography>
     </Paper>
+
   );
 };
 
