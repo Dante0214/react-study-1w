@@ -1,24 +1,36 @@
+import { Paper, Typography } from "@mui/material";
 import React from "react";
 
-const Box = (props) => {
-  let result;
-  if (
-    props.name === "Computer" &&
-    props.result !== "Tie" &&
-    props.result !== ""
-  ) {
-    result = props.result === "Win" ? "Lose" : "Win";
-  } else {
-    result = props.result;
+const getResult = (name, result) => {
+  if (name === "Computer" && result !== "Tie" && result !== "") {
+    return result === "Win" ? "Lose" : "Win";
   }
+  return result;
+};
+const Box = (props) => {
+  const result = getResult(props.name, props.result);
   return (
-    <div className={`box ${result}`}>
-      <h1 className="name">{props.name}</h1>
+    <Paper
+      elevation={3}
+      sx={{
+        textAlign: "center",
+        backgroundColor:
+          result === "Win" ? "#e8f5e9" : result === "Lose" ? "#ffebee" : "#fff",
+      }}
+    >
+      <Typography variant="h3" gutterBottom>
+        {props.name}
+      </Typography>
       {props.item && (
-        <img className="item-img" src={props.item.img} alt={props.item.name} />
+        <img
+          src={props.item.img}
+          alt={props.item.name}
+          style={{ width: "100%", maxWidth: "200px" }}
+        />
       )}
-      <h2>{result}</h2>
-    </div>
+      <Typography variant="h4">{result}</Typography>
+    </Paper>
+
   );
 };
 
