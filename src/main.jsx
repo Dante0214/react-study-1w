@@ -6,6 +6,7 @@ import AppClass from "./AppClass.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <App />
+    {/* <App/> */}
+    <AppClass />
   </StrictMode>
 );

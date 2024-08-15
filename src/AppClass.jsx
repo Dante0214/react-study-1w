@@ -4,6 +4,8 @@ import rockImg from "./assets/images/rock.png";
 import scissorsImg from "./assets/images/scissors.png";
 import paperImg from "./assets/images/paper.png";
 import BoxClass from "./components/BoxClass";
+import initImg from "./assets/images/init.png";
+import { Button, Container, Grid, Typography } from "@mui/material";
 
 const choice = {
   rock: {
@@ -18,13 +20,17 @@ const choice = {
     name: "Paper",
     img: paperImg,
   },
+  init: {
+    name: "init",
+    img: initImg,
+  },
 };
 export default class AppClass extends Component {
   constructor() {
     super();
     this.state = {
-      userSelect: null,
-      computerSelect: null,
+      userSelect: choice.init,
+      computerSelect: choice.init,
       result: "",
     };
   }
@@ -37,7 +43,7 @@ export default class AppClass extends Component {
     });
   };
   randomChoice = () => {
-    const itemArray = Object.keys(choice);
+    const itemArray = Object.keys(choice).filter((key) => key !== "init");
     const randomItem = Math.floor(Math.random() * itemArray.length);
     const final = itemArray[randomItem];
     return choice[final];
@@ -61,38 +67,61 @@ export default class AppClass extends Component {
   };
   render() {
     return (
-      <div>
-        <div className="main">
-          <BoxClass
-            name="You"
-            item={this.state.userSelect}
-            result={this.state.result}
-          />
-          <BoxClass
-            name="Computer"
-            item={this.state.computerSelect}
-            result={this.state.result}
-          />
-        </div>
-        <div className="main">
-          <button className="button" onClick={() => this.play("scissors")}>
-            가위
-          </button>
-          <button className="button" onClick={() => this.play("rock")}>
-            바위
-          </button>
-          <button className="button" onClick={() => this.play("paper")}>
-            보
-          </button>
-        </div>
-      </div>
+      <Container maxWidth="md">
+        <Typography
+          variant="h4"
+          align="center"
+          gutterBottom
+          padding={"20px 0px"}
+        >
+          가위 바위 보 게임
+        </Typography>
+        <Grid container spacing={2} mb={4} justifyContent="center">
+          <Grid item xs={12} sm={6}>
+            <BoxClass
+              name="You"
+              item={this.state.userSelect}
+              result={this.state.result}
+            />
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <BoxClass
+              name="Computer"
+              item={this.state.computerSelect}
+              result={this.state.result}
+            />
+          </Grid>
+        </Grid>
+        <Grid container spacing={2} justifyContent="center">
+          <Grid item>
+            <Button
+              sx={{ fontSize: "30px", color: "#000" }}
+              size="medium"
+              onClick={() => this.play("scissors")}
+            >
+              가위
+            </Button>
+          </Grid>
+          <Grid item>
+            <Button
+              sx={{ fontSize: "30px", color: "#000" }}
+              size="medium"
+              onClick={() => this.play("rock")}
+            >
+              바위
+            </Button>
+          </Grid>
+          <Grid item>
+            <Button
+              sx={{ fontSize: "30px", color: "#000" }}
+              size="medium"
+              onClick={() => this.play("paper")}
+            >
+              보
+            </Button>
+          </Grid>
+        </Grid>
+      </Container>
     );
   }
 }
-
-// 박스 2개{타이틀,사진,결과}
-// 가위 바위 보 버튼
-// 버튼을 클릭하면 클릭한 값이 내 박스에 보임
-// 컴퓨터는 랜덤하게 선택
-// 결과를 가지고 누가 이겼는지 승패을 따짐
-// 결과에 따라 테두리 색이 바뀜

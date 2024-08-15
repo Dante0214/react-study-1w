@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Paper, Typography } from "@mui/material";
 
 export default class BoxClass extends Component {
   render() {
@@ -14,15 +15,30 @@ export default class BoxClass extends Component {
       result = this.props.result;
     }
     return (
-      <div className={`box ${result}`}>
-        <h1 className="name">{this.props.name}</h1>
-        <img
-          className="item-img"
-          src={this.props.item && this.props.item.img}
-          alt={this.props.item && this.props.item.name}
-        />
-        <h2>{result}</h2>
-      </div>
+      <Paper
+        elevation={3}
+        sx={{
+          textAlign: "center",
+          backgroundColor:
+            result === "Win"
+              ? "#e8f5e9"
+              : result === "Lose"
+              ? "#ffebee"
+              : "#fff",
+        }}
+      >
+        <Typography variant="h3" gutterBottom>
+          {this.props.name}
+        </Typography>
+        {this.props.item && (
+          <img
+            src={this.props.item.img}
+            alt={this.props.item.name}
+            style={{ width: "100%", maxWidth: "200px" }}
+          />
+        )}
+        <Typography variant="h4">{result}</Typography>
+      </Paper>
     );
   }
 }
